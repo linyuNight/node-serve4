@@ -15,9 +15,11 @@ app.use(express.static('public/www'));
 
 var connection = mysql.createConnection({
  host   : '172.18.199.227',
+ // host   : '127.0.0.1',
  user   : 'root',
  password : 'root',
  database : 'mysql'
+ // database : 'chat'
 });
 connection.connect();
 // connection.query("select * from chat_content" , function selectTable(err, rows, fields){
@@ -53,15 +55,20 @@ app.get('/chatdata', function(req, res){
 			for(var i = 0 ; i < rows.length ; i++){
 				chatlist.push(rows[i])
 			}
+			res.json({chatlist: chatlist});
 		}
 	});
-	res.json({chatlist: chatlist});
 });
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-  	connection.query('insert into chat_content (name ,content) values ("'+msg[0]+'" , "'+msg[1]+'")');
-    io.emit('chat message', msg);
+  	connection.query('insert into chat_content (name ,content) values ("'+msg[0]+'" , "'+msg[1]+'")',function(err,result){
+  		if (err){
+			throw err;
+		}else{
+    		io.emit('chat message', msg);
+		}
+  	});
     // console.log(msg);
   });
 });
