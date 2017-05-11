@@ -14,10 +14,10 @@ app.use(express.static('public/www'));
 
 
 var connection = mysql.createConnection({
- host   : '127.0.0.1',
+ host   : '172.18.199.227',
  user   : 'root',
  password : 'root',
- database : 'chat'
+ database : 'mysql'
 });
 connection.connect();
 // connection.query("select * from chat_content" , function selectTable(err, rows, fields){
