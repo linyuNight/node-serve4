@@ -2,6 +2,7 @@ var express = require('express');
 var app = require('express')();
 var ejs = require('ejs');// 后台模板库
 var http = require('http').Server(app);
+var url = require('url');
 var io = require('socket.io')(http);
 var mysql=require('mysql'); 
 var compression = require('compression');//开启gzip
@@ -46,8 +47,11 @@ app.get('/', function(req, res){
 //加载数据
 var chatlist = [];
 app.get('/chatdata', function(req, res){
+	var pathname = url.parse(req.url).query;
+	var num = pathname.split('=');
+
 	res.header("Access-Control-Allow-Origin", "*");
-	connection.query("select * from chat_content order by id desc limit 10" , function selectTable(err, rows, fields){
+	connection.query("select * from chat_content order by id desc limit " + (parseInt(num[1])*10) + "," + 10 , function selectTable(err, rows, fields){
 		if (err){
 			throw err;
 		}
@@ -56,7 +60,7 @@ app.get('/chatdata', function(req, res){
 			for(var i = 0 ; i < rows.length ; i++){
 				chatlist.unshift(rows[i])
 			}
-			res.json({chatlist: chatlist});
+			res.json({chatlist: chatlist,lenght: rows.length});
 		}
 	});
 });
