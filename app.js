@@ -43,37 +43,44 @@ app.get('/', function(req, res){
   // res.render("index",{title:'header'});
 });
 
+//加载数据
 var chatlist = [];
 app.get('/chatdata', function(req, res){
 	res.header("Access-Control-Allow-Origin", "*");
-	connection.query("select * from chat_content" , function selectTable(err, rows, fields){
+	connection.query("select * from chat_content order by id desc limit 10" , function selectTable(err, rows, fields){
 		if (err){
 			throw err;
 		}
 		if (rows){
 			chatlist = []
 			for(var i = 0 ; i < rows.length ; i++){
-				chatlist.push(rows[i])
+				chatlist.unshift(rows[i])
 			}
 			res.json({chatlist: chatlist});
 		}
 	});
 });
 
+//socket接收和传输
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-  	connection.query('insert into chat_content (name ,content) values ("'+msg[0]+'" , "'+msg[1]+'")',function(err,result){
-  		if (err){
-			throw err;
-		}else{
-    		io.emit('chat message', msg);
-		}
-  	});
-    // console.log(msg);
-  });
+	socket.on('chat message', function(msg){
+		connection.query('insert into chat_content (name ,content ,create_time) values ("'+msg.name+'" , "'+msg.content+'" , UNIX_TIMESTAMP())',function(err,result){
+			if (err){
+				throw err;
+			}else{
+				connection.query("select * from chat_content order by id desc limit 1" , function selectTable(err, rows, fields){
+					if (err){
+						throw err;
+					}
+					if (rows){
+						io.emit('chat message', rows[0]);
+					}
+				});
+			}
+		});
+	});
 });
 
-
 http.listen(3000, function(){
-  console.log('listening on *:3000');
+	console.log('listening on *:3000');
 });
