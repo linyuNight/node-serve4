@@ -13,7 +13,7 @@ app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 app.use(express.static('public/www'));
 
-
+//数据库
 var connection = mysql.createConnection({
  host   : '172.18.199.227',
  // host   : '127.0.0.1',
@@ -23,35 +23,22 @@ var connection = mysql.createConnection({
  // database : 'chat'
 });
 connection.connect();
-// connection.query("select * from chat_content" , function selectTable(err, rows, fields){
-//  if (err){
-//   throw err;
-//  }
-//  if (rows){
-//   for(var i = 0 ; i < rows.length ; i++){
-//    console.log("%s\t%s\t%s", rows[i].zzzz,rows[i].age,rows[i].age2);
-//   }
-//  }
-// });
-// connection.query('insert into chat_content (name ,content) values ("lupeng" , "123456")');
- 
-// connection.end();
 
-
-
+//主页面
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/www/index.html');
   // res.render("index",{title:'header'});
 });
 
 //加载数据
+var datalength = 20;
 var chatlist = [];
 app.get('/chatdata', function(req, res){
 	var pathname = url.parse(req.url).query;
 	var num = pathname.split('=');
 
 	res.header("Access-Control-Allow-Origin", "*");
-	connection.query("select * from chat_content order by id desc limit " + (parseInt(num[1])*10) + "," + 10 , function selectTable(err, rows, fields){
+	connection.query("select * from chat_content order by id desc limit " + (parseInt(num[1])*10) + "," + datalength , function selectTable(err, rows, fields){
 		if (err){
 			throw err;
 		}
