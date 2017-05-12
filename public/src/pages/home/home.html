@@ -24,10 +24,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="chat_input" placeholder="Enter message"></ion-input>
-    </ion-item>
-    <button ion-button block (click)="send(chat_input)">Send</button>
+  <ion-toolbar class="footer">
+    <ion-input class="footer-input" type="text" [(ngModel)]="chat_input" placeholder="Enter message"></ion-input><button class="footer-btn" ion-button block (click)="send(chat_input)">Send</button>
   </ion-toolbar>
 </ion-footer>

@@ -9,7 +9,7 @@ page-home {
 		padding:0!important;
 	}
 	.chatitem{
-		background: #ddd;
+		background: #f5f5f5;
 		.label{
 			margin-top:4px;
 			margin-bottom:4px;
@@ -41,6 +41,8 @@ page-home {
 			padding:10px;
 			border-radius: 2px;
 			white-space: normal!important;
+			word-wrap:break-word!important;
+			word-break:break-all!important; 
 			display:inline-block; 
 			min-height: 40px;
 			.sanjiao{
@@ -54,6 +56,17 @@ page-home {
 			    border-right: 6px solid #fff;
 			    border-bottom: 4px solid transparent;
 			}
+		}
+	}
+
+	.footer{
+		.footer-input{
+			width:80%;
+			display: inline-block;
+		}
+		.footer-btn{
+			width:20%;
+			display: inline-block;
 		}
 	}
 }
