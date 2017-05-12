@@ -2,8 +2,8 @@
 
 npm install
 
-# localhost:3000
 node app
+# localhost:3000
 
 cd public
 
