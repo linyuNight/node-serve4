@@ -55,6 +55,9 @@ app.get('/chatdata', function(req, res){
 //socket接收和传输
 io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
+		if(msg.content = ""){
+			msg.content = " "
+		}
 		connection.query('insert into chat_content (name ,content ,create_time) values ("'+msg.name+'" , "'+msg.content+'" , UNIX_TIMESTAMP())',function(err,result){
 			if (err){
 				throw err;
