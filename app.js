@@ -38,7 +38,7 @@ app.get('/chatdata', function(req, res){
 	var num = pathname.split('=');
 
 	res.header("Access-Control-Allow-Origin", "*");
-	connection.query("select * from chat_content order by id desc limit " + (parseInt(num[1])*10) + "," + datalength , function selectTable(err, rows, fields){
+	connection.query("select * from chat_content order by id desc limit " + (parseInt(num[1])*datalength) + "," + datalength , function selectTable(err, rows, fields){
 		if (err){
 			throw err;
 		}
