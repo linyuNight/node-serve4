@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Chat</ion-title>
+  </ion-navbar>
+  <ion-item class="header-chat">
+    <ion-icon name="logo-octocat" class="avator"></ion-icon><span>{{username}}</span>
+  </ion-item>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item><button ion-button block color="dark" (click)="load_message()">点击加载数据</button></ion-item>
+    <ion-item class="chatitem" *ngFor="let message of chatlist">
+      <div class="chattime-contain">
+        <div class="chattime" *ngIf="message.isshowtime">{{message.create_time * 1000 | date : 'yyyy'}}-{{message.create_time * 1000 | date : 'MM'}}-{{message.create_time * 1000 | date : 'dd'}} {{message.create_time * 1000 | date : 'HH'}}:{{message.create_time * 1000 | date : 'mm'}}</div>
+      </div>       
+      <div class="clear">
+        <div class="chatusername">{{message.name}}</div>
+        <div><div class="chatcontent"><div class="sanjiao"></div>{{message.content}}</div></div>
+      </div>
+      </ion-item>
+  </ion-list>
+  <!-- <div>{{<a href="http://www.baidu.com">baidu</a>}}</div> -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="chat_input" placeholder="Enter message"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="send(chat_input)">Send</button>
+  </ion-toolbar>
+</ion-footer>

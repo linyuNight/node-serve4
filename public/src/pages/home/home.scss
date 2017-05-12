@@ -1,0 +1,59 @@
+page-home {
+	.header-chat{
+		padding-left: 0;
+		.avator{
+			padding:0 10px;
+		}
+	}
+	.scroll-content{
+		padding:0!important;
+	}
+	.chatitem{
+		background: #ddd;
+		.label{
+			margin-top:4px;
+			margin-bottom:4px;
+		}
+		.item-inner{
+			border-bottom: none!important;
+		}
+		.chattime-contain{
+			text-align: center;
+			.chattime{
+				display: inline-block;
+				padding:4px 8px;
+				background: #ccc;
+				color:#fff;
+				border-radius: 4px;
+				font-size: 12px;
+			}
+		}
+		.chattime-hide{
+			display: none;
+		}
+		.chatusername{
+			margin-bottom: 6px;
+		}
+		.chatcontent{
+			position: relative;
+			margin-left: 20px;
+			background: #fff;
+			padding:10px;
+			border-radius: 2px;
+			white-space: normal!important;
+			display:inline-block; 
+			min-height: 40px;
+			.sanjiao{
+				position: absolute;
+				left:-6px;
+				top:20px;
+				margin-top: -4px;
+				width: 0;
+			    height: 0;
+			    border-top: 4px solid transparent;
+			    border-right: 6px solid #fff;
+			    border-bottom: 4px solid transparent;
+			}
+		}
+	}
+}
