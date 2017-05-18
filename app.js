@@ -30,6 +30,10 @@ app.get('/', function(req, res){
   // res.render("index",{title:'header'});
 });
 
+app.get('/data', function(req, res){
+  res.json({data:'data'});
+});
+
 //加载数据
 var datalength = 20;
 var chatlist = [];
