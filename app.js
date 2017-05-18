@@ -31,7 +31,35 @@ app.get('/', function(req, res){
 });
 
 app.get('/data', function(req, res){
-  res.json({data:'data'});
+  res.json([
+		    {
+		        "_id":"440000198010314985","thumb":"https://dummyimage.com/1200x600/b0832a)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"54000020170223727X","thumb":"https://dummyimage.com/1200x600/652f2f)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"630000198206032344","thumb":"https://dummyimage.com/1200x600/5dddc5)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"210000198208117335","thumb":"https://dummyimage.com/1200x600/3694f6)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"500000197805284849","thumb":"https://dummyimage.com/1200x600/d54486)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"630000199603197024","thumb":"https://dummyimage.com/1200x600/675de4)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+		    ,
+		    {
+		        "_id":"650000198609184709","thumb":"https://dummyimage.com/1200x600/0a2206)","title":"测试内容8ymt","video":"blob:http://www.imooc.com/af8edce6-fa77-4e0c-9135-72538ce5cf1f"
+		    }
+      ]);
 });
 
 //加载数据
